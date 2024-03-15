@@ -1,11 +1,14 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
-    "src/renderer/src/env.d.ts",
+//    "src/renderer/types/env.d.ts",
+    "src/renderer/types/*.d.ts",
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.vue",
     "src/renderer/src/router/*.ts",
-    "src/preload/*.d.ts"
+    "src/renderer/src/utils/*.ts",
+    "src/renderer/src/**/*.ts",
+    "src/preload/*.d.ts",
   ],
   "compilerOptions": {
     "composite": true,
@@ -14,10 +17,13 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/renderer/src/*"
+        "./src/renderer/src/*"
       ]
     },
     "noUnusedParameters": false,
-    "noUnusedLocals":false
-  }
+    "noUnusedLocals":false,
+    "types": [
+      "webpack-env"
+    ]
+  },
 }

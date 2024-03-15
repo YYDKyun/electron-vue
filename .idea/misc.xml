@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="WebPackConfiguration">
+  <component name="ViteConfiguration">
     <option name="mode" value="MANUAL" />
+    <option name="path" value="$PROJECT_DIR$/electron.vite.config.ts" />
+  </component>
+  <component name="WebPackConfiguration">
+    <option name="mode" value="AUTO" />
     <option name="path" value="$PROJECT_DIR$/webpack.config.js" />
   </component>
 </project>
