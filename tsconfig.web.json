@@ -3,21 +3,21 @@
   "include": [
 //    "src/renderer/types/env.d.ts",
     "src/renderer/types/*.d.ts",
-    "src/renderer/src/**/*",
-    "src/renderer/src/**/*.vue",
-    "src/renderer/src/router/*.ts",
-    "src/renderer/src/utils/*.ts",
-    "src/renderer/src/**/*.ts",
+    "src/renderer/**/*",
+    "src/renderer/**/*.vue",
+    "src/renderer/router/*.ts",
+    "src/renderer/utils/*.ts",
+    "src/renderer/**/*.ts",
     "src/preload/*.d.ts",
   ],
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": [
-        "./src/renderer/src/*"
+        "./src/renderer/*"
       ]
     },
     "noUnusedParameters": false,

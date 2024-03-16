@@ -1,30 +1,30 @@
 import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
-
+import { electronApp, optimizer } from '@electron-toolkit/utils'
+const path = require('path')
 function createWindow(): void {
-
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1000,
     height: 700,
-    show: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    title: '计算器',
+    icon: 'public/icon.ico',
+
     webPreferences: {
       nodeIntegration: true,
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      webSecurity: false,
+      contextIsolation: false,
+      devTools: true
     }
   })
-
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
 
-  // mainWindow.webContents.openDevTools({ mode: 'right' })
+  mainWindow.webContents.openDevTools({ mode: 'right' })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
@@ -33,10 +33,10 @@ function createWindow(): void {
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+  if (app.isPackaged) {
+    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
+  } else if (process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-  } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
 
